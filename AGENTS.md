@@ -9,18 +9,29 @@ after something breaks.
 
 ## What this actually is right now — don't overstate it
 
-- `bolt-and-bahi.jsx` is a single-file React app, built to run as a
-  Claude.ai artifact. It persists data via `window.storage` (an
-  artifact-only API, not a real browser API) and calls the Anthropic API
-  directly with no key, because Claude.ai authenticates that
-  transparently inside its own environment.
+- **`/app`** is a real, standalone Vite + React project. It builds with
+  `npm run build` (real Rollup/esbuild, not just a Babel transform check
+  — verified) and runs in any browser, no Claude.ai dependency. It
+  persists data to real `localStorage` via a polyfill
+  (`app/src/storagePolyfill.js`) that mimics the artifact-only
+  `window.storage` API exactly, so `App.jsx`'s own persistence logic
+  needed zero changes. AI features use a bring-your-own-key pattern —
+  a key entered in Settings, stored in `localStorage`, sent directly to
+  Anthropic using the `anthropic-dangerous-direct-browser-access` header
+  (the documented, intended pattern for exactly this use case).
+- **`/prototype/bolt-and-bahi.jsx`** is the original single-file version,
+  kept for reference. It only runs as a Claude.ai artifact — calls the
+  Anthropic API with no key, because Claude.ai authenticates that
+  transparently inside its own environment. Don't confuse this file with
+  `/app` — they've diverged; changes to one don't apply to the other.
 - `supabase/schema.sql` is a real, independently verified schema — 21
   tables, 6 functions, 24 RLS policies, 5 masking views — deployed and
   confirmed working on its own Supabase project.
-- **These two are not connected.** The app does not talk to Supabase yet.
-  If you're asked to "add a feature," check first whether it belongs in
-  the current local-storage prototype or waits for the Supabase
-  migration — don't build against a backend that isn't wired up.
+- **`/app` and Supabase are not connected yet.** `/app` currently
+  persists to `localStorage` only. If you're asked to "add a feature,"
+  check first whether it belongs in the current local-storage app or
+  waits for the Supabase migration — don't build against a backend
+  that isn't wired up.
 - The "Organization / Roles" feature in the current app is an explicitly
   labeled **concept preview**: shared PINs per role, not real per-person
   accounts. Don't describe it as real security in any docs or UI copy.
@@ -114,9 +125,9 @@ string, it needs all 10 translations, in order, before it's usable — a
 
 ## Roadmap (see README.md for the full list)
 
-In short: migration importer, Vite restructuring, real Supabase-backed
-persistence, real Supabase Auth replacing the PIN system, real-time
-multi-device sync, a bring-your-own Anthropic API key field for AI
-features outside Claude.ai, and a real Vitest test suite. None of these
-are done. Don't assume any of them are in progress unless the repo's
-actual state shows it.
+Done: Vite restructuring (`/app`), bring-your-own Anthropic API key.
+Still open: migration importer, real Supabase-backed persistence
+replacing `localStorage`, real Supabase Auth replacing the shared-PIN
+system, real-time multi-device sync, a real Vitest test suite. Don't
+assume any open item is in progress unless the repo's actual state
+shows it.
