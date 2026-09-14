@@ -871,9 +871,36 @@ async function askClaudeVisionJSON(system, textPrompt, imageBase64, mediaType) {
 /* ---------- ARA — the app's floating assistant, available on every tab ---------- */
 /* ---------- Help & Guide — accordion-style, always reachable ---------- */
 const HELP_TOPICS = ["helpStart", "helpDashboard", "helpInventory", "helpRetail", "helpWholesale", "helpJobWork", "helpLogistics", "helpCustomers", "helpSettings", "helpAra", "helpThemeLang", "helpBackup", "helpRoles"];
-function HelpGuide({ t, open, onClose }) {
+function HelpGuide({ t, lang, context, open, onClose }) {
   const [expanded, setExpanded] = useState(HELP_TOPICS[0]);
+  const [helpQuestion, setHelpQuestion] = useState("");
+  const [helpAnswer, setHelpAnswer] = useState("");
+  const [helpLoading, setHelpLoading] = useState(false);
+  const [helpError, setHelpError] = useState(false);
   if (!open) return null;
+  const askHelpAra = async () => {
+    const q = helpQuestion.trim();
+    if (!q || helpLoading) return;
+    setHelpLoading(true);
+    setHelpError(false);
+    setHelpAnswer("");
+    try {
+      const system =
+        "You are ARA, the built-in assistant inside Bolt & Bahi, a textile trade ledger app for Indian fabric traders. " +
+        "The user is reading the in-app Help & Guide and has a question about how to use one of the app's departments: Dashboard, Inventory, Retail, Wholesale, Job Work, Logistics, Customers, or Settings. " +
+        "Answer their question in a short, practical way, naming the specific tab and what to click, in a sentence or two. " +
+        "If something is outside what you can help with from here, say so plainly instead of guessing. " +
+        "Keep answers short; this is a working trader on their phone, not someone who wants an essay. Respond in " + (LANG_NAME_FOR_AI[lang] || "English") + ".\n\n" +
+        "Current snapshot of their data:\n" + JSON.stringify(context || {});
+      const reply = await askClaudeChat(system, [{ role: "user", content: q }]);
+      setHelpAnswer(reply);
+    } catch (e) {
+      console.error("Help ARA failed:", e);
+      setHelpError(e.code === "NO_API_KEY" ? "NO_API_KEY" : true);
+    } finally {
+      setHelpLoading(false);
+    }
+  };
   return (
     <Modal title={t.helpGuideTitle} accent={COLOR.success} onClose={onClose}>
       <div style={{ display: "flex", flexDirection: "column", gap: 6, maxHeight: "62vh", overflowY: "auto" }}>
@@ -885,7 +912,26 @@ function HelpGuide({ t, open, onClose }) {
               <span style={{ color: COLOR.inkFaint, fontSize: 16 }}>{expanded === key ? "\u2212" : "+"}</span>
             </button>
             {expanded === key && (
-              <div style={{ padding: "0 12px 12px", fontSize: 12.5, color: COLOR.inkFaint, lineHeight: 1.6 }}>{t[key + "Body"]}</div>
+              <div style={{ padding: "0 12px 12px", fontSize: 12.5, color: COLOR.inkFaint, lineHeight: 1.6 }}>
+                {t[key + "Body"]}
+                {key === "helpAra" && (
+                  <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid " + COLOR.rule, display: "flex", flexDirection: "column", gap: 8 }}>
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <input style={{ flex: 1, padding: "8px 10px", border: "1px solid " + COLOR.rule, borderRadius: 6, fontSize: 12.5 }}
+                        value={helpQuestion} placeholder={t.araPlaceholder}
+                        onChange={(e) => setHelpQuestion(e.target.value)}
+                        onKeyDown={(e) => { if (e.key === "Enter") askHelpAra(); }} />
+                      <button onClick={askHelpAra} disabled={helpLoading || !helpQuestion.trim()}
+                        style={{ ...primaryBtn(COLOR.success), opacity: helpLoading || !helpQuestion.trim() ? 0.6 : 1 }}>
+                        {t.btnSend}
+                      </button>
+                    </div>
+                    {helpLoading && <div style={{ fontStyle: "italic" }}>{t.aiThinking}</div>}
+                    {helpError && <div style={{ color: COLOR.madder }}>{helpError === "NO_API_KEY" ? t.noApiKeyError : t.araErrorGeneric}</div>}
+                    {helpAnswer && <div style={{ whiteSpace: "pre-line", color: COLOR.ink }}>{helpAnswer}</div>}
+                  </div>
+                )}
+              </div>
             )}
           </div>
         ))}
@@ -1396,7 +1442,7 @@ export default function App() {
         style={{ position: "fixed", bottom: 20, right: 84, zIndex: 60, width: 54, height: 54, borderRadius: "50%", border: "none", cursor: "pointer", background: COLOR.indigo, color: ON_ACCENT, fontSize: 20, fontWeight: 700, boxShadow: "0 6px 18px rgba(0,0,0,0.28)" }}>
         {"?"}
       </button>
-      <HelpGuide t={t} open={helpOpen} onClose={() => setHelpOpen(false)} />
+      <HelpGuide t={t} lang={lang} context={araContext} open={helpOpen} onClose={() => setHelpOpen(false)} />
       {searchOpen && (
         <Modal title={t.btnSearch} accent={COLOR.indigo} onClose={() => { setSearchOpen(false); setGlobalQuery(""); }}>
           <input autoFocus style={{ ...inputStyle, width: "100%" }} placeholder={t.searchPlaceholder} value={globalQuery} onChange={(e) => setGlobalQuery(e.target.value)} />
