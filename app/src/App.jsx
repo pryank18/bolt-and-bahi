@@ -39,6 +39,25 @@ let BODY_FONT = LANG_FONT.en; // mutated alongside language changes — read fre
 
 // key: [en, hi, gu, mr, ta, te, kn, pa, bn]
 const STRINGS = {
+   const ARA_EXAMPLE_QUESTIONS = [
+        "What's my total outstanding from customers right now?",
+        "Which fabric rolls are low on stock this week?",
+        "Summarize today's retail and wholesale sales.",
+        "Draft a payment reminder for overdue customers.",
+        "Which wholesale orders are pending dispatch?",
+        "How much do I owe my suppliers this month?",
+        "What did I send to job work that hasn't come back yet?",
+        "Show me GST collected this month, CGST/SGST vs IGST.",
+      ];
+const ARA_EXAMPLE_INSIGHTS = [
+     "3 customers have payments overdue by more than 15 days.",
+     "Cotton voile stock is below reorder level — only 12 rolls left.",
+     "Wholesale orders are up 18% this week versus last week.",
+     "2 job-work batches are pending return for over 10 days.",
+     "Retail sales today are trending higher than your weekly average.",
+     "Estimated GST payable this month: CGST+SGST around ₹42,300.",
+     "One supplier payment is due in the next 3 days.",
+     "Dispatch is pending for 4 wholesale orders past their promised date.",
   appTagline: ["Textile trade ledger", "कपड़ा व्यापार बही", "કાપડ વેપાર ચોપડો", "कापड व्यापार बही", "ஜவுளி வர்த்தக பேரேடு", "వస్త్ర వ్యాపార ఖాతా పుస్తకం", "ಜವಳಿ ವ್ಯಾಪಾರ ಖಾತೆ ಪುಸ್ತಕ", "ਕੱਪੜਾ ਵਪਾਰ ਬਹੀ", "বস্ত্র ব্যবসার খতিয়ান", "Kapda vyapar ki bahi"],
   navDashboard: ["Dashboard", "डैशबोर्ड", "ડેશબોર્ડ", "डॅशबोर्ड", "டாஷ்போர்டு", "డాష్‌బోర్డ్", "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", "ਡੈਸ਼ਬੋਰਡ", "ড্যাশবোর্ড", "Dashboard"],
   navInventory: ["Inventory", "स्टॉक", "સ્ટોક", "स्टॉक", "இருப்பு", "నిల్వ", "ದಾಸ್ತಾನು", "ਸਟਾਕ", "মজুত", "Stock"],
@@ -245,7 +264,7 @@ const STRINGS = {
   apiKeySaved: ["Saved", "सेव हो गया", "સેવ થયું", "सेव्ह झाले", "சேமிக்கப்பட்டது", "సేవ్ అయింది", "ಉಳಿಸಲಾಗಿದೆ", "ਸੇਵ ਹੋ ਗਿਆ", "সংরক্ষিত হয়েছে", "Save ho gaya"],
   apiKeyStatusSet: ["\u2713 A key is set on this device", "\u2713 इस डिवाइस पर एक की सेट है", "\u2713 આ ડિવાઇસ પર એક કી સેટ છે", "\u2713 या डिव्हाइसवर एक की सेट आहे", "\u2713 இந்த சாதனத்தில் ஒரு விசை அமைக்கப்பட்டுள்ளது", "\u2713 ఈ పరికరంలో ఒక కీ సెట్ చేయబడింది", "\u2713 ಈ ಸಾಧನದಲ್ಲಿ ಒಂದು ಕೀ ಹೊಂದಿಸಲಾಗಿದೆ", "\u2713 ਇਸ ਡਿਵਾਈਸ 'ਤੇ ਇੱਕ ਕੀ ਸੈੱਟ ਹੈ", "\u2713 এই ডিভাইসে একটি কী সেট করা আছে", "\u2713 Is device pe ek key set hai"],
   apiKeyStatusUnset: ["No key set — AI features won't work until you add one", "कोई की सेट नहीं है — जब तक आप एक न डालें, AI फीचर काम नहीं करेंगे", "કોઈ કી સેટ નથી — જ્યાં સુધી તમે એક ન નાખો, AI ફીચર કામ નહીં કરે", "कोणतीही की सेट नाही — तुम्ही एक टाकेपर्यंत AI फीचर काम करणार नाहीत", "எந்த விசையும் அமைக்கப்படவில்லை — நீங்கள் ஒன்றைச் சேர்க்கும் வரை AI அம்சங்கள் வேலை செய்யாது", "కీ సెట్ చేయలేదు — మీరు ఒకటి జోడించే వరకు AI ఫీచర్లు పని చేయవు", "ಯಾವುದೇ ಕೀ ಹೊಂದಿಸಿಲ್ಲ — ನೀವು ಒಂದನ್ನು ಸೇರಿಸುವವರೆಗೆ AI ವೈಶಿಷ್ಟ್ಯಗಳು ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ", "ਕੋਈ ਕੀ ਸੈੱਟ ਨਹੀਂ — ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇੱਕ ਨਹੀਂ ਪਾਉਂਦੇ, AI ਫੀਚਰ ਕੰਮ ਨਹੀਂ ਕਰਨਗੇ", "কোনো কী সেট নেই — আপনি একটি যোগ না করা পর্যন্ত AI ফিচার কাজ করবে না", "Koi key set nahi hai — jab tak ek na daalo, AI features kaam nahi karenge"],
-  noApiKeyError: ["Add your Anthropic API key in Settings to use this.", "इसे इस्तेमाल करने के लिए Settings में अपनी Anthropic API की डालें।", "આનો ઉપયોગ કરવા Settings માં તમારી Anthropic API કી નાખો.", "हे वापरण्यासाठी Settings मध्ये तुमची Anthropic API की टाका.", "இதைப் பயன்படுத்த Settings இல் உங்கள் Anthropic API விசையைச் சேர்க்கவும்.", "దీన్ని ఉపయోగించడానికి Settings లో మీ Anthropic API కీని జోడించండి.", "ಇದನ್ನು ಬಳಸಲು Settings ನಲ್ಲಿ ನಿಮ್ಮ Anthropic API ಕೀ ಸೇರಿಸಿ.", "ਇਹ ਵਰਤਣ ਲਈ Settings ਵਿੱਚ ਆਪਣੀ Anthropic API ਕੀ ਪਾਓ।", "এটি ব্যবহার করতে Settings-এ আপনার Anthropic API কী যোগ করুন।", "Ise use karne ke liye Settings mein apni Anthropic API key daalo."],
+  noApiKeyError: ["Add your API key in Settings for live answers — try an example below.", "लाइव जवाब के लिए Settings में अपनी API की डालें — नीचे उदाहरण देखें।", "લાઈવ જવાબો માટે Settings માં તમારી API કી નાખો — નીચે ઉદાહરણ જુઓ.", "थेट उत्तरांसाठी Settings मध्ये तुमची API की टाका — खाली उदाहरण पहा.", "நேரடி பதில்களுக்கு Settings இல் உங்கள் API விசையைச் சேர்க்கவும் — கீழே உள்ள உதாரணத்தை முயற்சிக்கவும்.", "లైవ్ సమాధానాల కోసం Settings లో మీ API కీని జోడించండి — దిగువ ఉదాహరణను ప్రయత్నించండి.", "ಲೈವ್ ಉತ್ತರಗಳಿಗಾಗಿ Settings ನಲ್ಲಿ ನಿಮ್ಮ API ಕೀಯನ್ನು ಸೇರಿಸಿ — ಕೆಳಗಿನ ಉದಾಹರಣೆ ಪ್ರಯತ್ನಿಸಿ.", "ਲਾਈਵ ਜਵਾਬਾਂ ਲਈ Settings ਵਿੱਚ ਆਪਣੀ API ਕੀ ਪਾਓ — ਹੇਠਾਂ ਉਦਾਹਰਣ ਵੇਖੋ।", "লাইভ উত্তরের জন্য Settings-এ আপনার API কী যোগ করুন — নিচে উদাহরণ দেখুন।", "Live jawab ke liye Settings mein apni API key daalo — neeche example dekho."],
   btnReturn: ["Return", "वापसी", "પરત", "परतावा", "திரும்ப", "రిటర్న్", "ಹಿಂತಿರುಗಿಸಿ", "ਵਾਪਸੀ", "ফেরত", "Return"],
   lblReturnQty: ["Return quantity", "वापसी मात्रा", "પરત જથ્થો", "परतावा प्रमाण", "திரும்ப அளவு", "రిటర్న్ పరిమాణం", "ಹಿಂತಿರುಗಿಸುವ ಪ್ರಮಾಣ", "ਵਾਪਸੀ ਮਾਤਰਾ", "ফেরতের পরিমাণ", "Return quantity"],
   lblDispatchedQty: ["Dispatched", "भेजा गया", "મોકલાયેલ", "पाठवलेले", "அனுப்பப்பட்டது", "పంపబడింది", "ರವಾನಿಸಲಾಗಿದೆ", "ਭੇਜਿਆ", "প্রেরিত", "Dispatch hua"],
@@ -1026,7 +1045,7 @@ function AraWidget({ t, lang, context }) {
             <div style={{ fontSize: 11.5, opacity: 0.9 }}>{t.araTagline}</div>
           </div>
           <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
-            {messages.length === 0 && <div style={{ fontSize: 13, color: COLOR.inkFaint, lineHeight: 1.5 }}>{t.araWelcome}</div>}
+            {messages.length === 0 && (<div style={{ fontSize: 13, color: COLOR.inkFaint, lineHeight: 1.5 }}><div>{t.araWelcome}</div><div style={{ marginTop: 10, marginBottom: 4, fontWeight: 600, color: COLOR.ink }}>Try asking ARA:</div><div style={{ display: "flex", flexDirection: "column", gap: 6 }}>{ARA_EXAMPLE_QUESTIONS.map((q, qi) => (<button key={qi} onClick={() => setInput(q)} style={{ textAlign: "left", background: "none", border: "1px solid " + COLOR.rule, borderRadius: 8, padding: "6px 10px", fontSize: 12.5, color: COLOR.ink, cursor: "pointer" }}>{q}</button>))}</div></div>)}
             {messages.map((m, i) => (
               <div key={i} style={{ alignSelf: m.role === "user" ? "flex-end" : "flex-start", maxWidth: "85%", display: "flex", flexDirection: "column", gap: 3 }}>
                 <div style={{ padding: "8px 12px", borderRadius: 10, fontSize: 13, lineHeight: 1.5, whiteSpace: "pre-line", background: m.role === "user" ? COLOR.indigo : COLOR.khadiDeep, color: m.role === "user" ? ON_ACCENT : COLOR.ink }}>
@@ -1695,9 +1714,9 @@ function Dashboard({ t, lang, setTab, hideMargins, hideOutstanding, totalStock, 
           </div>
           <button style={{ ...secondaryBtn, borderColor: COLOR.success, color: COLOR.success, opacity: aiInsightLoading ? 0.6 : 1 }} onClick={askAiInsight} disabled={aiInsightLoading}>{aiInsightLoading ? t.aiThinking : t.btnAskAi}</button>
         </div>
-        {aiInsightError && <div style={{ color: COLOR.madder, fontSize: 12.5 }}>{aiInsightError === "NO_API_KEY" ? t.noApiKeyError : t.araErrorGeneric}</div>}
+        {aiInsightError && aiInsightError !== "NO_API_KEY" && <div style={{ color: COLOR.madder, fontSize: 12.5 }}>{t.araErrorGeneric}</div>}
         {!aiInsightError && aiInsight && <div style={{ fontSize: 13.5, color: COLOR.ink, whiteSpace: "pre-line", lineHeight: 1.6 }}>{aiInsight}</div>}
-        {!aiInsightError && !aiInsight && !aiInsightLoading && <div style={{ fontSize: 13, color: COLOR.inkFaint, fontStyle: "italic" }}>{t.aiInsightPlaceholder}</div>}
+        {(aiInsightError === "NO_API_KEY" || (!aiInsightError && !aiInsight && !aiInsightLoading)) && (<div style={{ fontSize: 13, color: COLOR.inkFaint }}><div style={{ fontStyle: "italic", marginBottom: 6 }}>{t.aiInsightPlaceholder}</div><div style={{ fontWeight: 600, color: COLOR.ink, marginBottom: 4 }}>Example ARA insights:</div><ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>{ARA_EXAMPLE_INSIGHTS.map((pt, pi) => <li key={pi}>{pt}</li>)}</ul></div>)}
       </div>
 
       <div style={{ background: COLOR.white, border: "1px solid " + COLOR.rule, borderLeft: "4px solid " + COLOR.indigo, borderRadius: 6, padding: 18, marginBottom: 18 }}>
