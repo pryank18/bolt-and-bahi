@@ -38,17 +38,16 @@ const LANG_FONT = {
 let BODY_FONT = LANG_FONT.en; // mutated alongside language changes — read fresh by heading styles below so they fall back to the right script
 
 // key: [en, hi, gu, mr, ta, te, kn, pa, bn]
-const STRINGS = {
-   const ARA_EXAMPLE_QUESTIONS = [
-        "What's my total outstanding from customers right now?",
-        "Which fabric rolls are low on stock this week?",
-        "Summarize today's retail and wholesale sales.",
-        "Draft a payment reminder for overdue customers.",
-        "Which wholesale orders are pending dispatch?",
-        "How much do I owe my suppliers this month?",
-        "What did I send to job work that hasn't come back yet?",
-        "Show me GST collected this month, CGST/SGST vs IGST.",
-      ];
+const ARA_EXAMPLE_QUESTIONS = [
+     "What's my total outstanding from customers right now?",
+     "Which fabric rolls are low on stock this week?",
+     "Summarize today's retail and wholesale sales.",
+     "Draft a payment reminder for overdue customers.",
+     "Which wholesale orders are pending dispatch?",
+     "How much do I owe my suppliers this month?",
+     "What did I send to job work that hasn't come back yet?",
+     "Show me GST collected this month, CGST/SGST vs IGST.",
+   ];
 const ARA_EXAMPLE_INSIGHTS = [
      "3 customers have payments overdue by more than 15 days.",
      "Cotton voile stock is below reorder level — only 12 rolls left.",
@@ -58,7 +57,8 @@ const ARA_EXAMPLE_INSIGHTS = [
      "Estimated GST payable this month: CGST+SGST around ₹42,300.",
      "One supplier payment is due in the next 3 days.",
      "Dispatch is pending for 4 wholesale orders past their promised date.",
-  appTagline: ["Textile trade ledger", "कपड़ा व्यापार बही", "કાપડ વેપાર ચોપડો", "कापड व्यापार बही", "ஜவுளி வர்த்தக பேரேடு", "వస్త్ర వ్యాపార ఖాతా పుస్తకం", "ಜವಳಿ ವ್ಯಾಪಾರ ಖಾತೆ ಪುಸ್ತಕ", "ਕੱਪੜਾ ਵਪਾਰ ਬਹੀ", "বস্ত্র ব্যবসার খতিয়ান", "Kapda vyapar ki bahi"],
+   ];
+const STRINGS = {  appTagline: ["Textile trade ledger", "कपड़ा व्यापार बही", "કાપડ વેપાર ચોપડો", "कापड व्यापार बही", "ஜவுளி வர்த்தக பேரேடு", "వస్త్ర వ్యాపార ఖాతా పుస్తకం", "ಜವಳಿ ವ್ಯಾಪಾರ ಖಾತೆ ಪುಸ್ತಕ", "ਕੱਪੜਾ ਵਪਾਰ ਬਹੀ", "বস্ত্র ব্যবসার খতিয়ান", "Kapda vyapar ki bahi"],
   navDashboard: ["Dashboard", "डैशबोर्ड", "ડેશબોર્ડ", "डॅशबोर्ड", "டாஷ்போர்டு", "డాష్‌బోర్డ్", "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", "ਡੈਸ਼ਬੋਰਡ", "ড্যাশবোর্ড", "Dashboard"],
   navInventory: ["Inventory", "स्टॉक", "સ્ટોક", "स्टॉक", "இருப்பு", "నిల్వ", "ದಾಸ್ತಾನು", "ਸਟਾਕ", "মজুত", "Stock"],
   navRetail: ["Retail", "खुदरा", "છૂટક", "किरकोळ", "சில்லறை", "చిల్లర", "ಚಿಲ್ಲರೆ", "ਪ੍ਰਚੂਨ", "খুচরা", "Retail"],
