@@ -14,14 +14,14 @@ use it.
 Being upfront about this rather than describing a finished product:
 
 - **`/app`** is a real, standalone Vite + React project. It builds and
-  runs in a plain browser — no sandbox dependency. Data persists to
+  runs in a plain browser — a standard build. Data persists to
   real browser `localStorage`. AI features (ARA, fabric photo-fill,
   dashboard insights, reminder drafting) work once you add your own
   LLM API key in the app's Settings tab (bring-your-own-key —
   nothing is billed to anyone but you, and the key never leaves your
   browser except in direct calls to the LLM provider).
 - **`/prototype`** is the original single-file version this was built
-  from, kept for reference. It only runs as a sandbox artifact.
+  from. It is kept for historical reference and is not wired into the build.
 - **`/supabase/schema.sql`** is a real, independently verified schema —
   21 tables, 6 functions, 24 RLS policies, 5 masking views — deployed
   and confirmed working on its own Supabase project.
