@@ -9,6 +9,18 @@ photo straight into stock. Ten languages, including Hinglish. Five visual
 themes. Everything saved locally, no account or subscription required to
 use it.
 
+**Live demo:** https://pryank18.github.io/bolt-and-bahi/
+
+## Product decisions
+
+- **Local-first, no account.** A trader can start billing without signing up. Multi-device sync is the next phase, on a Supabase schema already verified (21 tables, 24 RLS policies).
+- **GST split handled automatically.** CGST/SGST vs IGST is where manual invoices go wrong, so the app decides it from the transaction instead of asking the trader.
+- **Bring-your-own Anthropic key for ARA.** Nothing is billed to anyone else and the key stays in the browser, which keeps the AI features optional rather than a paywall.
+- **Say what's a preview.** Roles are shared PINs today and are labelled as a concept preview until real per-user auth lands.
+- **Ten languages, including Hinglish.** The target user reads a ledger in the language they speak at the counter.
+
+**How I'd measure it:** GST invoicing errors vs manual calculation, time spent reconciling stock, sales, and dispatch, and receivables left untracked past their due date.
+
 ## Where this project actually stands right now
 
 Being upfront about this rather than describing a finished product:
@@ -104,6 +116,10 @@ serving another application.
 - [ ] Real-time sync across devices via Supabase Realtime
 - [ ] A real test suite (Vitest) and CI, so regressions get caught
       automatically instead of by hand
+
+## How it was built
+
+Built AI-assisted with Claude as coding partner. Product scope, requirements (see `docs/`), and QA are mine.
 
 ## License
 
