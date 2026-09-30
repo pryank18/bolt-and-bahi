@@ -1,5 +1,9 @@
 # Bolt & Bahi
 
+> 📘 **[Read the product case study on Notion](https://fern-appliance-85f.notion.site/3ebefd17b76681698b4ad899d7ff5902)** — problem, key decisions, what was cut and how I'd measure it.
+>
+> **Live demo:** [pryank18.github.io/bolt-and-bahi](https://pryank18.github.io/bolt-and-bahi/) · **Docs:** [PRD](https://github.com/pryank18/bolt-and-bahi/blob/main/docs/PRD.md) · [BRD](https://github.com/pryank18/bolt-and-bahi/blob/main/docs/BRD.md) · [MRD](https://github.com/pryank18/bolt-and-bahi/blob/main/docs/MRD.md) · [Spec](https://github.com/pryank18/bolt-and-bahi/blob/main/docs/product-spec.md) · **More work:** [Notion portfolio](https://fern-appliance-85f.notion.site/Pryank-Wadhera-3eaefd17b76680c88283e85a3217ff52)
+
 A textile trade ledger built for Indian fabric traders — retail counter
 billing, wholesale distribution, job work tracking, dispatch and logistics,
 GST-correct invoicing (CGST/SGST/IGST handled automatically), supplier
