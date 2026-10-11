@@ -1,4 +1,4 @@
-// Polyfills window.storage (a sandbox-artifact-only API) with a real
+// Polyfills window.storage (a sandbox-only API) with a real
 // implementation backed by localStorage, matching the exact same shape:
 //   get(key)        -> Promise<{ value: string } | null>
 //   set(key, value) -> Promise<{ value: string } | null>
