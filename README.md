@@ -19,7 +19,7 @@ use it.
 
 - **Local-first, no account.** A trader can start billing without signing up. Multi-device sync is the next phase, on a Supabase schema already verified (21 tables, 24 RLS policies).
 - **GST split handled automatically.** CGST/SGST vs IGST is where manual invoices go wrong, so the app decides it from the transaction instead of asking the trader.
-- **Bring-your-own the LLM provider key for ARA.** Nothing is billed to anyone else and the key stays in the browser, which keeps the AI features optional rather than a paywall.
+- **Bring-your-own LLM key for ARA.** Nothing is billed to anyone else and the key stays in the browser, which keeps the AI features optional rather than a paywall.
 - **Say what's a preview.** Roles are shared PINs today and are labelled as a concept preview until real per-user auth lands.
 - **Ten languages, including Hinglish.** The target user reads a ledger in the language they speak at the counter.
 
@@ -110,7 +110,7 @@ serving another application.
 
 - [x] Restructure into a real Vite + React project
 - [x] A "bring your own LLM API key" field, so AI features work
-      outside sandbox
+      outside the sandboxed preview
 - [ ] Migration importer — read the existing JSON backup format (already
       exportable from the app's Settings tab) and insert it into the
       Supabase schema

@@ -20,8 +20,8 @@ after something breaks.
   the LLM provider using the `direct browser access` header
   (the documented, intended pattern for exactly this use case).
 - **`/prototype/bolt-and-bahi.jsx`** is the original single-file version,
-  kept for reference. It only runs as a sandbox artifact — calls the
-  LLM API with no key, because sandbox authenticates that
+  kept for reference. It only runs as a sandboxed preview — calls the
+  LLM API with no key, because the sandbox authenticates that
   transparently inside its own environment. Don't confuse this file with
   `/app` — they've diverged; changes to one don't apply to the other.
 - `supabase/schema.sql` is a real, independently verified schema — 21
