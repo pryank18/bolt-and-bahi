@@ -21,7 +21,7 @@ Traders run billing, stock, and dispatch across paper registers and WhatsApp, ca
 - Job work tracking — fabric sent to and received back from job-work units
 - Dispatch and logistics — partial dispatch and transport tracking
 - Receivables and payables — customer aging and supplier dues in one place
-- ARA assistant — bring-your-own-key the LLM provider integration for reminders, day summaries, and photo-to-stock entry
+- ARA assistant — bring-your-own-key LLM integration for reminders, day summaries, and photo-to-stock entry
 - Localization — ten languages (including Hinglish) and five visual themes
 
 ## Out of scope (v1)
@@ -38,4 +38,4 @@ Traders run billing, stock, and dispatch across paper registers and WhatsApp, ca
 
 ## Status
 
-Live at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with bring-your-own-key the LLM provider integration for ARA. A verified Supabase schema (21 tables, 24 RLS policies) exists in /supabase for the next phase of work but is not yet wired into the live app.
+Live at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with bring-your-own-key LLM integration for ARA. A verified Supabase schema (21 tables, 24 RLS policies) exists in /supabase for the next phase of work but is not yet wired into the live app.

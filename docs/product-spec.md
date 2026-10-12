@@ -29,7 +29,7 @@ Indian textile traders running retail counter billing, wholesale distribution, a
 - Job work tracking — track fabric sent out and received back from job-work units
 - Dispatch and logistics — partial dispatch, transport tracking, delivery status
 - Receivables and payables — customer aging and supplier payables in one register
-- ARA assistant — bring-your-own-key the LLM provider assistant for reminders, day summaries, and photo-to-stock entry
+- ARA assistant — bring-your-own-key LLM assistant for reminders, day summaries, and photo-to-stock entry
 - Languages and themes — ten languages (incl. Hinglish) and five visual themes
 
 ## User stories
@@ -47,4 +47,4 @@ Indian textile traders running retail counter billing, wholesale distribution, a
 
 ## Status
 
-Live — v1 is built and deployed at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with a bring-your-own-key the LLM provider integration for ARA. A verified Supabase schema (21 tables, 24 RLS policies) already exists in /supabase for a planned next phase — real accounts and multi-device sync — but the live app is not yet connected to it.
+Live — v1 is built and deployed at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with a bring-your-own-key LLM integration for ARA. A verified Supabase schema (21 tables, 24 RLS policies) already exists in /supabase for a planned next phase — real accounts and multi-device sync — but the live app is not yet connected to it.

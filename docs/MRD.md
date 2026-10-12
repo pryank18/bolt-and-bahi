@@ -28,4 +28,4 @@ A trader-first ledger for the textile trade segment that enterprise ERP software
 
 ## Status
 
-Live demo at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with a bring-your-own-key the LLM provider integration for ARA. No pricing model or go-to-market validation with real traders yet — that follows the next phase, once the app is connected to the verified Supabase schema for real accounts and sync.
+Live demo at pryank18.github.io/bolt-and-bahi/, running on browser localStorage with a bring-your-own-key LLM integration for ARA. No pricing model or go-to-market validation with real traders yet — that follows the next phase, once the app is connected to the verified Supabase schema for real accounts and sync.
