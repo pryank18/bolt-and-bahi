@@ -1,28 +1,25 @@
 # Working on Bolt & Bahi — read this first
 
-This file is for any AI coding agent (or human contributor) picking up
-this repo — it follows the [AGENTS.md](https://agents.md) convention read
-by most current coding assistants. It exists because a lot of hard-won,
-specific context from the original build would otherwise be lost the
-moment a new session starts cold. Read it before making changes, not
+This file is for anyone picking up this repo. It records hard-won,
+specific context from the original build that would otherwise be lost
+when someone new starts cold. Read it before making changes, not
 after something breaks.
 
 ## What this actually is right now — don't overstate it
 
 - **`/app`** is a real, standalone Vite + React project. It builds with
   `npm run build` (real Rollup/esbuild, not just a Babel transform check
-  — verified) and runs in any browser, no sandbox dependency. It
+  — verified) and runs in any browser with no hosted-preview dependency. It
   persists data to real `localStorage` via a polyfill
-  (`app/src/storagePolyfill.js`) that mimics the artifact-only
+  (`app/src/storagePolyfill.js`) that mimics the prototype's
   `window.storage` API exactly, so `App.jsx`'s own persistence logic
   needed zero changes. AI features use a bring-your-own-key pattern —
   a key entered in Settings, stored in `localStorage`, sent directly to
-  the LLM provider using the `direct browser access` header
-  (the documented, intended pattern for exactly this use case).
+  the LLM provider using the provider's documented direct-browser-access header
+  (the intended pattern for exactly this use case).
 - **`/prototype/bolt-and-bahi.jsx`** is the original single-file version,
-  kept for reference. It only runs as a sandboxed preview — calls the
-  LLM API with no key, because the sandbox authenticates that
-  transparently inside its own environment. Don't confuse this file with
+  kept for reference. It only runs in the original hosted preview, which
+  supplied the LLM API key itself. Don't confuse this file with
   `/app` — they've diverged; changes to one don't apply to the other.
 - `supabase/schema.sql` is a real, independently verified schema — 21
   tables, 6 functions, 24 RLS policies, 5 masking views — deployed and
@@ -50,11 +47,11 @@ underneath — see below.
   been *verified*, and turned out to already be running a different,
   unrelated app. Always verify a target environment's actual state with
   a real read-only query before running anything destructive against it
-  — never infer it from conversation history alone.
-- **A raw database password was pasted into a chat conversation.** Chat
-  history is not a secrets store. If a credential like this is ever
-  generated during a session, tell the user to rotate it and store it
-  outside the conversation — don't just acknowledge and move on.
+  — never infer it from what was discussed alone.
+- **A raw database password was pasted into a message thread.** Message
+  history is not a secrets store. If a credential is ever exposed this
+  way, rotate it and move it into a proper secrets store — don't just
+  acknowledge and move on.
 - **A temporal-dead-zone bug crashed the entire app on load** (a
   variable used before its declaration further down the same function).
   It compiled fine — Babel/JS compilation does not catch this class of
@@ -91,13 +88,13 @@ underneath — see below.
   math still reconcile.
 - **Changes should be additive wherever possible.** Don't refactor or
   "clean up" working, unrelated code while adding a new feature.
-- **If something can't be verified from this environment (a live browser
+- **If something can't be verified locally (a live browser
   render, an actual network call, a real user's click), say so plainly**
   rather than implying it was tested. This project's AI features (ARA,
   dashboard insights) failed in the live environment multiple times in
-  ways that never reproduced in static code review — the honest answer
-  each time was "the code checks out, I can't reproduce this without a
-  real browser," not a confident guess.
+  ways that never reproduced in static code review — the honest status
+  each time was "the code checks out, not yet reproduced in a real
+  browser," not a confident guess.
 
 ## i18n conventions
 
