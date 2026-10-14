@@ -61,8 +61,7 @@ npm run dev
 ```
 
 Open the printed local URL. To use the AI features, go to Settings and
-add your own LLM API key — get one at
-your LLM provider's console. Your key is
+add your own LLM API key from your model provider's console. Your key is
 stored only in your browser and used only for your own requests.
 
 To build for deployment (Vercel, Netlify, GitHub Pages, or any static
