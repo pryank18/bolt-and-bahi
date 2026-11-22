@@ -822,6 +822,14 @@ function downloadCSV(filename, rows) {
   document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
+/* LLM provider settings, kept in one place. */
+const LLM = {
+  url: atob("aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcw=="),
+  model: atob("Y2xhdWRlLXNvbm5ldC00LTY="),
+  versionHeader: atob("YW50aHJvcGljLXZlcnNpb24="),
+  browserHeader: atob("YW50aHJvcGljLWRhbmdlcm91cy1kaXJlY3QtYnJvd3Nlci1hY2Nlc3M="),
+};
+
 /* ---------- ARA helpers — thin wrappers around the built-in LLM API, powering ARA (the app's assistant) ---------- */
 async function getStoredApiKey() {
   const result = await window.storage.get("bb-llm-key");
@@ -835,21 +843,21 @@ async function askLLMChat(system, messages) {
     err.code = "NO_API_KEY";
     throw err;
   }
-  const res = await fetch(atob("aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcw=="), {
+  const res = await fetch(LLM.url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "x-api-key": apiKey,
-      [atob("YW50aHJvcGljLXZlcnNpb24=")]: "2023-06-01",
+      [LLM.versionHeader]: "2023-06-01",
       // the LLM provider requires this header to allow the request at all from a
       // browser. The name is a deliberate warning: a key typed into a
       // browser is visible to anyone with devtools open. This is the
       // documented, intended pattern specifically for bring-your-own-key
       // tools like this one, where each person supplies and controls
       // their own key — not something to hide from the user.
-      [atob("YW50aHJvcGljLWRhbmdlcm91cy1kaXJlY3QtYnJvd3Nlci1hY2Nlc3M=")]: "true",
+      [LLM.browserHeader]: "true",
     },
-    body: JSON.stringify({ model: atob("Y2xhdWRlLXNvbm5ldC00LTY="), max_tokens: 1000, system, messages: messages.map((m) => ({ role: m.role, content: m.content })) }),
+    body: JSON.stringify({ model: LLM.model, max_tokens: 1000, system, messages: messages.map((m) => ({ role: m.role, content: m.content })) }),
   });
   if (!res.ok) {
     const bodyText = await res.text().catch(() => "");

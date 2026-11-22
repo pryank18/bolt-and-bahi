@@ -794,12 +794,20 @@ function downloadCSV(filename, rows) {
   document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
+/* LLM provider settings, kept in one place. */
+const LLM = {
+  url: atob("aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcw=="),
+  model: atob("Y2xhdWRlLXNvbm5ldC00LTY="),
+  versionHeader: atob("YW50aHJvcGljLXZlcnNpb24="),
+  browserHeader: atob("YW50aHJvcGljLWRhbmdlcm91cy1kaXJlY3QtYnJvd3Nlci1hY2Nlc3M="),
+};
+
 /* ---------- ARA helpers — thin wrappers around the built-in LLM API, powering ARA (the app's assistant) ---------- */
 async function askLLMChat(system, messages) {
-  const res = await fetch(atob("aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcw=="), {
+  const res = await fetch(LLM.url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model: atob("Y2xhdWRlLXNvbm5ldC00LTY="), max_tokens: 1000, system, messages: messages.map((m) => ({ role: m.role, content: m.content })) }),
+    body: JSON.stringify({ model: LLM.model, max_tokens: 1000, system, messages: messages.map((m) => ({ role: m.role, content: m.content })) }),
   });
   if (!res.ok) throw new Error("ARA request failed (" + res.status + ")");
   const data = await res.json();
